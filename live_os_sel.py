@@ -9,12 +9,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import time
-import pathlib
+import configparser
 
-PATH = pathlib.Path("G:\Code\Selenium_drivers\geckodriver\geckodriver-v0.31.0-win64")
+config = configparser.ConfigParser()
+config.read('config.ini')
 
+PATH = config['Selenium Driver Paths']['gecko']
 
-driver = webdriver.Firefox(PATH)
+driver = webdriver.Firefox(executable_path=PATH)
 driver.implicitly_wait(0.5)
 driver.get("https://demo.os-js.org/")
 
@@ -77,17 +79,15 @@ def wait_to_load(name:str,func,xpath:str):
         print(f'[+] Finished: {name}')
 
 
+# def type_text():
+#     pass
 
-def type_text():
-    pass
 
-
-def input_keys(*args):
-    if len(args) != 1:
-        for arg in args:
-            break
-    pass
-
+# def input_keys(*args):
+#     if len(args) != 1:
+#         for arg in args:
+#             break
+#     pass
 
 
 if __name__ == '__main__':

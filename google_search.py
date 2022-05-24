@@ -1,11 +1,14 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+import configparser
 import time
-import pathlib
 
-PATH = pathlib.Path("G:\Code\Selenium_drivers\geckodriver\geckodriver-v0.31.0-win64")
+config = configparser.ConfigParser()
+config.read('config.ini')
 
-driver = webdriver.Firefox(PATH)
+PATH = config['Selenium Driver Paths']['gecko']
+
+driver = webdriver.Firefox(executable_path=PATH)
 driver.implicitly_wait(0.5)
 driver.get("http://www.google.com")
 
